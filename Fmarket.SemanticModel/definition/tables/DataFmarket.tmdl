@@ -1,0 +1,128 @@
+table DataFmarket
+	lineageTag: 8e254f7c-6b82-4b1b-8a34-9f719aa68b94
+
+	column 'Date created'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8af435bd-f817-4ada-8d4b-60914ec56b7e
+		summarizeBy: none
+		sourceColumn: Date created
+
+		variation Variation
+			isDefault
+			relationship: 29fc1907-350a-42b4-81c9-d7a1dcef58bb
+			defaultHierarchy: LocalDateTable_108236f7-06fc-47e3-b2c5-edfee1fafc55.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Tên CCQ'
+		dataType: string
+		lineageTag: 58373cbe-3f0c-4836-b63e-78e9ff9be2fb
+		summarizeBy: none
+		sourceColumn: Tên CCQ
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tên chương trình'
+		dataType: string
+		lineageTag: ce86dde1-cb4f-40db-b2f7-62976edf9b52
+		summarizeBy: none
+		sourceColumn: Tên chương trình
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ngày mua'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7c3d8e95-a4f9-4485-bcd3-545c85645e0d
+		summarizeBy: none
+		sourceColumn: Ngày mua
+
+		variation Variation
+			isDefault
+			relationship: a1c780fe-4ae6-4669-b6fb-5b77cdac6ca2
+			defaultHierarchy: LocalDateTable_0bc01407-dbcd-46a4-a81c-d800680db441.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Số lượng'
+		dataType: double
+		lineageTag: 36e18147-4e2e-4c79-beaf-0b676ae3f958
+		summarizeBy: sum
+		sourceColumn: Số lượng
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Giá mua(VND)'
+		dataType: decimal
+		formatString: #,0.00\ "₫";-#,0.00\ "₫";#,0.00\ "₫"
+		lineageTag: 2fd35f33-ab6f-4888-af85-d0993d1d3c7a
+		summarizeBy: sum
+		sourceColumn: Giá mua(VND)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"vi-VN"}
+
+	column 'NAV kỳ gần nhất(VND)'
+		dataType: decimal
+		formatString: #,0.00\ "₫";-#,0.00\ "₫";#,0.00\ "₫"
+		lineageTag: e67cf7a9-7200-40c2-bb89-644057dc85ff
+		summarizeBy: sum
+		sourceColumn: NAV kỳ gần nhất(VND)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"vi-VN"}
+
+	column 'Giá trị tương ứng(VND)'
+		dataType: decimal
+		formatString: #,0.00\ "₫";-#,0.00\ "₫";#,0.00\ "₫"
+		lineageTag: 1a485d8b-febd-4b3d-aba9-38961052896b
+		summarizeBy: sum
+		sourceColumn: Giá trị tương ứng(VND)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"vi-VN"}
+
+	column Lời/Lỗ(VND)
+		dataType: decimal
+		formatString: "£"#,0.###############;-"£"#,0.###############;"£"#,0.###############
+		lineageTag: 6b93f40e-aca5-43c8-9bcd-a835a7e4519c
+		summarizeBy: sum
+		sourceColumn: Lời/Lỗ(VND)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-GB"}
+
+	column Lời/Lỗ(%)
+		dataType: decimal
+		formatString: #,0.00
+		lineageTag: 763350d5-01e8-4eea-a307-b879bef39709
+		summarizeBy: sum
+		sourceColumn: Lời/Lỗ(%)
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DataFmarket = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("D:\DATA 2\Fmarket\BaoCaoTaiSan.xlsx"), null, true),
+				    DataFmarket_Table = Source{[Item="DataFmarket",Kind="Table"]}[Data],
+				    #"Changed Type" = Table.TransformColumnTypes(DataFmarket_Table,{{"Date created", type date}, {"Tên CCQ", type text}, {"Tên chương trình", type text}, {"Ngày mua", type date}, {"Số lượng", type number}, {"Giá mua#(lf)(VND)", Currency.Type}, {"NAV kỳ gần nhất#(lf)(VND)", Currency.Type}, {"Giá trị tương ứng#(lf)(VND)", Currency.Type}, {"Lời/Lỗ#(lf)(VND)", Currency.Type}, {"Lời/Lỗ#(lf)(%)", Currency.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

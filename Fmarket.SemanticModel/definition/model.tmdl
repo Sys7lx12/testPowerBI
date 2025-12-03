@@ -1,0 +1,21 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DataFmarket"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DataFmarket
+ref table DateTableTemplate_45849f2c-0291-4a0c-ac4a-c1384cdd1bb4
+ref table LocalDateTable_108236f7-06fc-47e3-b2c5-edfee1fafc55
+ref table LocalDateTable_0bc01407-dbcd-46a4-a81c-d800680db441
+
+ref cultureInfo en-US
+

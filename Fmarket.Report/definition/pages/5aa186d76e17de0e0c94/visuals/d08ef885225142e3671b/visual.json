@@ -1,0 +1,99 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "d08ef885225142e3671b",
+  "position": {
+    "x": 10,
+    "y": 0,
+    "z": 0,
+    "height": 280,
+    "width": 280,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DataFmarket"
+                    }
+                  },
+                  "Property": "Tên CCQ"
+                }
+              },
+              "queryRef": "DataFmarket.Tên CCQ",
+              "nativeQueryRef": "Tên CCQ",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "DataFmarket"
+                        }
+                      },
+                      "Property": "Giá trị tương ứng(VND)"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(DataFmarket.Giá trị tương ứng(VND))",
+              "nativeQueryRef": "Sum of Giá trị tương ứng(VND)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3a054163e3cb37632820",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DataFmarket"
+              }
+            },
+            "Property": "Tên CCQ"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7d0a18dd0210e0875605",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "DataFmarket"
+                  }
+                },
+                "Property": "Giá trị tương ứng(VND)"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

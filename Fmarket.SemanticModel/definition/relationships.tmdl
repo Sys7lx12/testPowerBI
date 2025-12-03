@@ -1,0 +1,10 @@
+relationship 29fc1907-350a-42b4-81c9-d7a1dcef58bb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DataFmarket.'Date created'
+	toColumn: LocalDateTable_108236f7-06fc-47e3-b2c5-edfee1fafc55.Date
+
+relationship a1c780fe-4ae6-4669-b6fb-5b77cdac6ca2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DataFmarket.'Ngày mua'
+	toColumn: LocalDateTable_0bc01407-dbcd-46a4-a81c-d800680db441.Date
+
